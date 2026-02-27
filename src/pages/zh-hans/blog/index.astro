@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_TITLE } from '../../../consts';
+
+const posts = (await getCollection('blog-zh-hans')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="zh-Hans">
+	<head>
+		<BaseHead title={SITE_TITLE} description="策略性赋权饮食——每日饮食随笔" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="lang-switcher">
+				<a href="/blog">English</a> |
+				<a href="/zh-hant/blog">繁體中文</a> |
+				<strong>简体中文</strong>
+			</div>
+			<section>
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/zh-hans/blog/${post.id}/`}>
+									{post.data.heroImage && (
+										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+									)}
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+<style>
+	main { width: 960px; }
+	.lang-switcher { text-align: center; padding: 1em; color: rgb(var(--gray)); }
+	.lang-switcher a { color: rgb(var(--accent)); text-decoration: none; }
+	ul { display: flex; flex-wrap: wrap; gap: 2rem; list-style-type: none; margin: 0; padding: 0; }
+	ul li { width: calc(50% - 1rem); }
+	ul li * { text-decoration: none; transition: 0.2s ease; }
+	ul li:first-child { width: 100%; margin-bottom: 1rem; text-align: center; }
+	ul li:first-child img { width: 100%; }
+	ul li:first-child .title { font-size: 2.369rem; }
+	ul li img { margin-bottom: 0.5rem; border-radius: 12px; }
+	ul li a { display: block; }
+	.title { margin: 0; color: rgb(var(--black)); line-height: 1; }
+	.date { margin: 0; color: rgb(var(--gray)); }
+	ul li a:hover h4, ul li a:hover .date { color: rgb(var(--accent)); }
+	@media (max-width: 720px) {
+		ul { gap: 0.5em; }
+		ul li { width: 100%; text-align: center; }
+		ul li:first-child { margin-bottom: 0; }
+		ul li:first-child .title { font-size: 1.563em; }
+	}
+</style>

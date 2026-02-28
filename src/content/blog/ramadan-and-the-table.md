@@ -3,6 +3,7 @@ title: 'Life, Food, Fast: What Ramadan Teaches Us About the Table'
 description: 'On enforced collective hunger as social technology, and what the Iftar table reveals about food as equaliser.'
 pubDate: '2026-02-28'
 heroImage: '../../assets/ramadan-and-the-table-hero.png'
+author: FlyingGG
 ---
 
 My Arabic teacher was fasting during our lesson.

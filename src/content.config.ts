@@ -8,6 +8,7 @@ const blogSchema = ({ image }: { image: () => z.ZodType }) =>
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: image().optional(),
+		author: z.string().default('FlyingGG'),
 	});
 
 const blog = defineCollection({

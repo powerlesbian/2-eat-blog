@@ -3,6 +3,7 @@ title: 'Stomach Memory: Why Comfort Food Is Never Really About the Food'
 description: 'On the gut-deep politics of what we crave, eight years of veganism, and why you should be deeply suspicious of the next nutritional breakthrough.'
 pubDate: '2026-02-27'
 heroImage: '../../assets/stomach-memory-hero.png'
+author: FlyingGG
 ---
 
 There is a kind of hunger that has nothing to do with calories.

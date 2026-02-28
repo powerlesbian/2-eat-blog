@@ -3,6 +3,7 @@ title: 'Welcome to Eat for Life'
 description: 'Why I started this blog and what empowerment eating means to me.'
 pubDate: '2026-02-27'
 heroImage: '../../assets/welcome-hero.png'
+author: FlyingGG
 ---
 
 Food is not just fuel. It's memory, culture, medicine, and joy — all on one plate.

@@ -2,7 +2,7 @@
 title: '生命、食物、齋戒：齋月教會我們關於餐桌的事'
 description: '關於集體飢餓作為一種社會技術，以及開齋飯桌如何揭示食物作為平等化力量的角色。'
 pubDate: '2026-02-28'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/ramadan-and-the-table-hero.png'
 ---
 
 我的阿拉伯語老師在上課時正在齋戒。

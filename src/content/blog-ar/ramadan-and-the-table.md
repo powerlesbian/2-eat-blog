@@ -2,7 +2,7 @@
 title: 'فِي الْفَصْلِ الدِّرَاسِيِّ'
 description: 'تَأَمُّلَاتٌ حَوْلَ الصَّوْمِ وَالطَّعَامِ وَلَحْظَةٍ لَنْ أَنْسَاهَا'
 pubDate: '2026-02-28'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/ramadan-and-the-table-hero.png'
 ---
 
 جَلَسْتُ فِي الْفَصْلِ الدِّرَاسِيِّ مَعَ مُعَلِّمِي فِي الْمَسَاءِ.

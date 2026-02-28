@@ -2,7 +2,7 @@
 title: '生命、食物与斋戒：斋月教会我们的餐桌智慧'
 description: '关于集体饥饿作为一种社会技术，以及开斋餐桌如何揭示食物作为平等力量的意义。'
 pubDate: '2026-02-28'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/ramadan-and-the-table-hero.png'
 ---
 
 我的阿拉伯语老师在上课时正在封斋。

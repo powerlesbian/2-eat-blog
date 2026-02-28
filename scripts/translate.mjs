@@ -11,6 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR = path.join(__dirname, '../src/content/blog');
 const HANT_DIR = path.join(__dirname, '../src/content/blog-zh-hant');
 const HANS_DIR = path.join(__dirname, '../src/content/blog-zh-hans');
+const AR_DIR = path.join(__dirname, '../src/content/blog-ar');
 
 const slug = process.argv[2];
 if (!slug) {
@@ -50,18 +51,27 @@ ${text}`,
       },
     ],
   });
-  return msg.content[0].text;
+  // Strip any accidental markdown code fences the model might wrap output in
+  return msg.content[0].text.replace(/^```(?:markdown)?\n/, '').replace(/\n```$/, '');
 }
 
 const hant = await translate(source, 'Traditional Chinese (Hong Kong style, 繁體中文)', 'Traditional Chinese');
 const hans = await translate(source, 'Simplified Chinese (Mainland China style, 简体中文)', 'Simplified Chinese');
+const ar = await translate(
+  source,
+  'Modern Standard Arabic (فصحى) with full harakat (diacritics). The blog is personal and warm — write in a gentle literary MSA voice, not formal or stiff.',
+  'Arabic'
+);
 
 fs.mkdirSync(HANT_DIR, { recursive: true });
 fs.mkdirSync(HANS_DIR, { recursive: true });
+fs.mkdirSync(AR_DIR, { recursive: true });
 
 fs.writeFileSync(path.join(HANT_DIR, `${slug}.md`), hant);
 fs.writeFileSync(path.join(HANS_DIR, `${slug}.md`), hans);
+fs.writeFileSync(path.join(AR_DIR, `${slug}.md`), ar);
 
 console.log(`Done!`);
 console.log(`  → src/content/blog-zh-hant/${slug}.md`);
 console.log(`  → src/content/blog-zh-hans/${slug}.md`);
+console.log(`  → src/content/blog-ar/${slug}.md`);

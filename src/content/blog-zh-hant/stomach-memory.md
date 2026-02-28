@@ -2,7 +2,7 @@
 title: '胃的記憶：為什麼療癒食物從來都不只是食物'
 description: '關於我們渴望的食物背後那種深入腸胃的政治學、八年素食生涯，以及為什麼你應該對下一個營養學突破保持深深的懷疑。'
 pubDate: '2026-02-27'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/stomach-memory-hero.png'
 ---
 
 有一種飢餓，跟卡路里毫無關係。

@@ -2,7 +2,7 @@
 title: '胃的记忆：为什么comfort food从来都不只是食物'
 description: '关于我们渴望的食物背后那些深入骨髓的政治，八年纯素生活的体悟，以及为什么你应该对下一个"营养学重大突破"保持深深的警惕。'
 pubDate: '2026-02-27'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/stomach-memory-hero.png'
 ---
 
 有一种饥饿，和卡路里毫无关系。

@@ -63,7 +63,7 @@ When it falls in summer at northern latitudes, fasts can exceed eighteen hours. 
 
 ## What the Table Reveals
 
-I started thinking about this because my teacher was fasting and still fully present — generous, focused, unhurried. She was not diminished by hunger. She was, if anything, more deliberate.
+I started thinking about this because my teacher was fasting and still fully present — generous, focused, unhurried. He was not diminished by hunger. He was, if anything, more deliberate.
 
 That is the lesson I keep taking from Ramadan as someone learning to think about food differently: hunger, held with intention and shared with others, is not absence. It is a kind of preparation. The table at the end of the day is not just a meal — it is the point.
 

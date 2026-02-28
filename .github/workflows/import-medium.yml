@@ -1,0 +1,46 @@
+name: Import from Medium
+
+on:
+  schedule:
+    # Runs daily at 09:00 UTC (17:00 HKT)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions UI
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Medium import + translate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Optional: override feed URL without changing code
+          # MEDIUM_FEED_URL: https://medium.com/feed/eat-for-life
+        run: node scripts/import-from-medium.mjs
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "eat-for-life-bot"
+          git config user.email "bot@2-eat.com"
+          git add src/content/ src/assets/
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "chore: import new posts from Medium [skip ci]"
+            git push
+          fi

@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_TITLE } from '../../../consts';
+
+const posts = (await getCollection('blog-ar')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+	<head>
+		<BaseHead title={SITE_TITLE} description="تأملات في الطعام والحياة" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="lang-switcher">
+				<a href="/blog">EN</a> |
+				<a href="/zh-hant/blog">繁</a> |
+				<a href="/zh-hans/blog">简</a> |
+				<strong>عر</strong>
+			</div>
+			<section>
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/ar/blog/${post.id}/`}>
+									{post.data.heroImage && (
+										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+									)}
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+<style>
+	main { width: 960px; }
+	.lang-switcher { text-align: center; padding: 1em; color: rgb(var(--gray)); }
+	.lang-switcher a { color: rgb(var(--accent)); text-decoration: none; }
+	ul { display: flex; flex-wrap: wrap; gap: 2rem; list-style-type: none; margin: 0; padding: 0; }
+	ul li { width: calc(50% - 1rem); }
+	ul li * { text-decoration: none; transition: 0.2s ease; }
+	ul li:first-child { width: 100%; margin-bottom: 1rem; text-align: center; }
+	ul li:first-child img { width: 100%; }
+	ul li:first-child .title { font-size: 2.369rem; font-family: 'Arial', 'Tahoma', sans-serif; }
+	ul li img { margin-bottom: 0.5rem; border-radius: 12px; }
+	ul li a { display: block; text-align: right; }
+	.title { margin: 0; color: rgb(var(--black)); line-height: 1.6; font-family: 'Arial', 'Tahoma', sans-serif; font-size: 1.1em; }
+	.date { margin: 0; color: rgb(var(--gray)); }
+	ul li a:hover h4, ul li a:hover .date { color: rgb(var(--accent)); }
+	@media (max-width: 720px) {
+		ul { gap: 0.5em; }
+		ul li { width: 100%; text-align: center; }
+		ul li:first-child { margin-bottom: 0; }
+		ul li:first-child .title { font-size: 1.563em; }
+	}
+</style>

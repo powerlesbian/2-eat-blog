@@ -25,4 +25,9 @@ const blogZhHans = defineCollection({
 	schema: blogSchema,
 });
 
-export const collections = { blog, 'blog-zh-hant': blogZhHant, 'blog-zh-hans': blogZhHans };
+const blogAr = defineCollection({
+	loader: glob({ base: './src/content/blog-ar', pattern: '**/*.{md,mdx}' }),
+	schema: blogSchema,
+});
+
+export const collections = { blog, 'blog-zh-hant': blogZhHant, 'blog-zh-hans': blogZhHans, 'blog-ar': blogAr };

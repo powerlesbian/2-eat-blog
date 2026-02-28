@@ -18,7 +18,7 @@ import TurndownService from 'turndown';
 //   https://medium.com/feed/eat-for-life
 // Or keep using a personal profile:
 //   https://medium.com/feed/@ggchao
-const MEDIUM_FEED_URL = process.env.MEDIUM_FEED_URL || 'https://medium.com/feed/@ggchao';
+const MEDIUM_FEED_URL = process.env.MEDIUM_FEED_URL || 'https://medium.com/feed/2-eat';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR   = path.join(__dirname, '../src/content/blog');

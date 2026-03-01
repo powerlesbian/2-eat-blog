@@ -107,7 +107,10 @@ Rules:
 ${text}`,
     }],
   });
-  return msg.content[0].text.replace(/^```(?:markdown)?\n/, '').replace(/\n```$/, '');
+  let text = msg.content[0].text.trim();
+  if (text.startsWith('```')) text = text.replace(/^```(?:markdown)?\n?/, '');
+  if (text.endsWith('```')) text = text.replace(/\n?```$/, '');
+  return text.trim();
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────

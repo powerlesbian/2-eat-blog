@@ -1,6 +1,6 @@
 ---
 title: '两杯'
-description: '两杯'
+description: '同一张桌子上的两个杯子，两副截然不同的身体。关于咖啡习惯、乳糖耐受性、祖传瓷器，以及肠胃真正知道的事。'
 pubDate: '2026-03-01'
 heroImage: '../../assets/2-cups-hero.jpeg'
 author: FlyingGG

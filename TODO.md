@@ -1,5 +1,21 @@
 # 2-eat Blog — TODO & Setup Notes
 
+## ⚠️ SECURITY — Rotate Anthropic API Key
+
+The API key was shared in plain text in a chat session and should be rotated.
+
+**Steps:**
+1. Go to https://console.anthropic.com → API Keys
+2. Create a new key
+3. Update it everywhere it's used (local .env, GitHub Secrets, any other apps)
+4. Delete the old key ending in `...VPAAA`
+
+**While waiting to rotate — keep an eye on:**
+- https://console.anthropic.com → Usage (watch for unexpected spikes)
+- Set a spend cap if not already: Settings → Limits
+
+---
+
 ## ✅ Done
 - Astro site deployed on Cloudflare Worker at https://2-eat.com
 - 3 posts live in English, Traditional Chinese, Simplified Chinese, Arabic

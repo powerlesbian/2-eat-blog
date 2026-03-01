@@ -127,7 +127,13 @@ for (const item of feed.items) {
   const slug = slugify(item.title);
   const destFile = path.join(BLOG_DIR, `${slug}.md`);
 
-  if (fs.existsSync(destFile)) {
+  const enExists = fs.existsSync(destFile);
+  const translationsExist =
+    fs.existsSync(path.join(HANT_DIR, `${slug}.md`)) &&
+    fs.existsSync(path.join(HANS_DIR, `${slug}.md`)) &&
+    fs.existsSync(path.join(AR_DIR, `${slug}.md`));
+
+  if (enExists && translationsExist) {
     console.log(`Skip (exists): ${slug}`);
     continue;
   }
@@ -176,12 +182,18 @@ for (const item of feed.items) {
     '---',
   ].filter(Boolean).join('\n');
 
-  const markdown = `${frontmatter}\n\n${body}\n`;
+  const markdown = enExists
+    ? fs.readFileSync(destFile, 'utf-8')
+    : `${frontmatter}\n\n${body}\n`;
 
-  // Write EN post
-  fs.mkdirSync(BLOG_DIR, { recursive: true });
-  fs.writeFileSync(destFile, markdown);
-  console.log(`  Written: src/content/blog/${slug}.md`);
+  // Write EN post (skip if already exists)
+  if (!enExists) {
+    fs.mkdirSync(BLOG_DIR, { recursive: true });
+    fs.writeFileSync(destFile, markdown);
+    console.log(`  Written: src/content/blog/${slug}.md`);
+  } else {
+    console.log(`  EN exists, adding missing translations only.`);
+  }
 
   // Translate
   if (!process.env.ANTHROPIC_API_KEY) {

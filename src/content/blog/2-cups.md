@@ -10,8 +10,6 @@ Every morning begins the same, and differently.
 
 JW reaches for her Orange Americano — espresso cut with fresh orange, no dairy, no negotiation. Her gut made that decision months ago. For years she started the day with milky coffee and spent the first hour paying for it. The switch was not philosophical. It was practical. Her body said no. She finally listened.
 
-![](https://cdn-images-1.medium.com/max/1024/1*J2Y4de5aVj4L2ajvkRCciw.jpeg)
-
 On the other side of the table: milk, poured full and unapologetic into a cup that probably receives more attention than it deserves.
 
 The coffee set came from a porcelain maker still operating out of Hong Kong, discovered during the pandemic. They hand-paint everything — have done for decades. The same workshop produced the wedding china for Prince Charles and Princess Diana, a marriage the whole world inherited opinions about and which famously did not survive its own fairy tale. Objects outlast the stories they were made for. They find new tables, new rituals, new owners who press them into meanings the makers never intended.

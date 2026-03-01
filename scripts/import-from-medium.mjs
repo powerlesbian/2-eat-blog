@@ -67,6 +67,8 @@ function cleanMediumHtml(html) {
 // Strip Medium boilerplate from converted Markdown
 function cleanMediumMarkdown(md) {
   return md
+    // First image in body (already used as hero banner)
+    .replace(/^!\[.*?\]\(.*?\)\n*/m, '')
     // Tracking pixel
     .replace(/!\[\]\(https:\/\/medium\.com\/_\/stat[^\)]*\)/g, '')
     // "Originally published in..." footer (last paragraph)

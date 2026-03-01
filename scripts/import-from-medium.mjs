@@ -109,10 +109,10 @@ Rules:
 ${text}`,
     }],
   });
-  let text = msg.content[0].text.trim();
-  if (text.startsWith('```')) text = text.replace(/^```(?:markdown)?\n?/, '');
-  if (text.endsWith('```')) text = text.replace(/\n?```$/, '');
-  return text.trim();
+  let result = msg.content[0].text.trim();
+  if (result.startsWith('```')) result = result.replace(/^```(?:markdown)?\n?/, '');
+  if (result.endsWith('```')) result = result.replace(/\n?```$/, '');
+  return result.trim();
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -141,13 +141,13 @@ for (const item of feed.items) {
   const rawAuthor = item.creator || item['dc:creator'] || '';
   const author = (rawAuthor && rawAuthor !== 'Eat for Life') ? rawAuthor : 'FlyingGG';
 
+  // Hero image
+  const rawHtml = item['content:encoded'] || item.content || '';
+
   // Description — extract from content HTML, fall back to title
   const description = item.contentSnippet && item.contentSnippet !== item.title
     ? item.contentSnippet.replace(/\n/g, ' ').slice(0, 200).trim()
     : extractDescription(rawHtml);
-
-  // Hero image
-  const rawHtml = item['content:encoded'] || item.content || '';
   const heroUrl = extractHeroImageUrl(rawHtml);
   let heroFrontmatter = '';
   if (heroUrl) {

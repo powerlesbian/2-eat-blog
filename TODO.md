@@ -1,6 +1,29 @@
 # 2-eat Blog — TODO & Setup Notes
 
-## ⚠️ SECURITY — Rotate Anthropic API Key
+## ⚠️ SECURITY — Credentials to Rotate
+
+### Anthropic API Key
+The API key was shared in plain text in a chat session and should be rotated.
+
+**Steps:**
+1. Go to https://console.anthropic.com → API Keys
+2. Create a new key
+3. Update it everywhere it's used (local .env, GitHub Secrets, any other apps)
+4. Delete the old key ending in `...VPAAA`
+
+**While waiting to rotate — keep an eye on:**
+- https://console.anthropic.com → Usage (watch for unexpected spikes)
+- Set a spend cap if not already: Settings → Limits
+
+### GitHub PAT + Webhook Secret Token
+Both were shared in plain text in a chat session.
+- Rotate GitHub PAT at https://github.com/settings/tokens (the one ending in `...fjBpG`)
+- After rotating, update it in the Cloudflare Worker: `npx wrangler secret put GITHUB_TOKEN --name 2eat-trigger`
+- If you change the webhook token word, update it with: `npx wrangler secret put SECRET_TOKEN --name 2eat-trigger`
+
+---
+
+## 📲 Trigger Medium Import (Mobile-Friendly)
 
 The API key was shared in plain text in a chat session and should be rotated.
 
@@ -13,6 +36,13 @@ The API key was shared in plain text in a chat session and should be rotated.
 **While waiting to rotate — keep an eye on:**
 - https://console.anthropic.com → Usage (watch for unexpected spikes)
 - Set a spend cap if not already: Settings → Limits
+
+---
+
+Bookmark this URL on your phone home screen:
+`https://2eat-trigger.powerlesbian.workers.dev/?token=spreadit`
+
+One tap → import runs → new Medium post appears on 2-eat.com in ~2 minutes.
 
 ---
 

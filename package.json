@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "translate": "node scripts/translate.mjs",
-    "import-medium": "node scripts/import-from-medium.mjs"
+    "import-medium": "node scripts/import-from-medium.mjs",
+    "import-blogger": "node scripts/import-from-blogger.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

@@ -1,0 +1,41 @@
+name: Import from Blogger
+
+on:
+  workflow_dispatch:
+    # Manual trigger only — tap the webhook when you've just published a food post
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Blogger import + translate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/import-from-blogger.mjs
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "eat-for-life-bot"
+          git config user.email "bot@2-eat.com"
+          git add src/content/ src/assets/
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "chore: import new posts from Blogger [skip ci]"
+            git push
+          fi

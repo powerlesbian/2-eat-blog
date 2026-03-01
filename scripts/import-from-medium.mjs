@@ -53,7 +53,7 @@ function extractHeroImageUrl(html) {
   return match ? match[1] : null;
 }
 
-// Strip Medium's figure/caption tags cleanly before converting
+// Strip Medium's figure/caption tags and tracking artifacts before converting
 function cleanMediumHtml(html) {
   return html
     .replace(/<figcaption[^>]*>[\s\S]*?<\/figcaption>/gi, '')
@@ -62,6 +62,22 @@ function cleanMediumHtml(html) {
     .replace(/<picture[^>]*>/gi, '')
     .replace(/<\/picture>/gi, '')
     .replace(/<source[^>]*>/gi, '');
+}
+
+// Strip Medium boilerplate from converted Markdown
+function cleanMediumMarkdown(md) {
+  return md
+    // Tracking pixel
+    .replace(/!\[\]\(https:\/\/medium\.com\/_\/stat[^\)]*\)/g, '')
+    // "Originally published in..." footer (last paragraph)
+    .replace(/\[.*?\]\(https:\/\/medium\.com\/2-eat\/.*?\) was originally published.*$/ms, '')
+    .trim();
+}
+
+// Extract a real description from the first paragraph of plain text
+function extractDescription(html) {
+  const stripped = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  return stripped.slice(0, 200).trim();
 }
 
 const td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-' });
@@ -116,11 +132,14 @@ for (const item of feed.items) {
   // Dates
   const pubDate = new Date(item.pubDate || item.isoDate).toISOString().split('T')[0];
 
-  // Author — falls back to FlyingGG
-  const author = item.creator || item['dc:creator'] || 'FlyingGG';
+  // Author — fall back to FlyingGG if Medium returns the publication name
+  const rawAuthor = item.creator || item['dc:creator'] || '';
+  const author = (rawAuthor && rawAuthor !== 'Eat for Life') ? rawAuthor : 'FlyingGG';
 
-  // Description — Medium puts a subtitle or first sentence in item.contentSnippet
-  const description = (item.contentSnippet || item.title).replace(/\n/g, ' ').slice(0, 200).trim();
+  // Description — extract from content HTML, fall back to title
+  const description = item.contentSnippet && item.contentSnippet !== item.title
+    ? item.contentSnippet.replace(/\n/g, ' ').slice(0, 200).trim()
+    : extractDescription(rawHtml);
 
   // Hero image
   const rawHtml = item['content:encoded'] || item.content || '';
@@ -139,7 +158,7 @@ for (const item of feed.items) {
 
   // Convert HTML → Markdown
   const cleanHtml = cleanMediumHtml(rawHtml);
-  const body = td.turndown(cleanHtml).trim();
+  const body = cleanMediumMarkdown(td.turndown(cleanHtml));
 
   // Build frontmatter
   const frontmatter = [
